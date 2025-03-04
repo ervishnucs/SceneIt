@@ -19,7 +19,7 @@ The **Movie Tracker App** is a simple and efficient web application that helps u
 | Service      | Usage Description                                                                 |
 |--------------|----------------------------------------------------------------------------------|
 | **AWS Lambda** | Backend functions for handling create, read, update, and delete (CRUD) operations. |
-| **API Gateway** | Exposes HTTP endpoints to connect frontend with backend.                     |
+| **API Gateway** | Exposes RESTful endpoints to connect frontend with backend.                     |
 | **DynamoDB**  | Stores movie data, including title, status, and favorite scenes.                  |
 | **S3**        | Hosts the static frontend files (HTML, CSS, JS).                                 |
 
@@ -31,6 +31,12 @@ The **Movie Tracker App** is a simple and efficient web application that helps u
 3. **Lambda Functions:** Handle all CRUD operations for movies and scenes.
 4. **DynamoDB:** Stores all movie data, including titles, status (watched/unwatched), and favorite scenes.
 
+---
+
+## Screenshot
+Below is a screenshot of the **Movie Tracker App** interface:
+
+![Movie Tracker Screenshot](Screenshot%202025-03-05%20004116.png)
 
 ---
 
@@ -59,4 +65,29 @@ The **Movie Tracker App** is a simple and efficient web application that helps u
 - Create a **DynamoDB table** (e.g., `Movies`) with attributes:
     - `MovieID` (Primary Key - String)
     - `Title` (String)
-    - `Status` (String
+    - `Status` (String - Watched/Not Watched)
+    - `Scenes` (List)
+
+- Create Lambda functions for:
+    - `addMovie`
+    - `getMovies`
+    - `updateMovie`
+    - `deleteMovie`
+
+- Create an **API Gateway REST API** to expose:
+    - `POST /movies` → addMovie Lambda
+    - `GET /movies` → getMovies Lambda
+    - `PUT /movies/{id}` → updateMovie Lambda
+    - `DELETE /movies/{id}` → deleteMovie Lambda
+
+- Update `script.js` to use your deployed **API Gateway URLs**.
+
+---
+
+## Demo Video
+Watch the full walkthrough and demo here:  
+🔗 [https://youtu.be/buQvIcs_sFw](https://youtu.be/buQvIcs_sFw)
+
+---
+
+## Folder Structure
