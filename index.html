@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Tracker App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <h1>🎥 Movie Tracker</h1>
+        <p>Track your movies and favorite scenes</p>
+      </header>
+
+      <section class="add-movie">
+        <h2>Add Movie to Watch List</h2>
+        <form id="addMovieForm">
+          <input
+            type="text"
+            id="movieTitle"
+            placeholder="Movie Title"
+            required
+          />
+          <select id="watched-status">
+            <option value="not-watched">Not Watched</option>
+            <option value="watched">Watched</option>
+          </select>
+          <input
+            type="text"
+            id="fav-scenes"
+            placeholder="Favorite Scenes (comma-separated)"
+          />
+          <button type="submit">Add to Watchlist</button>
+        </form>
+      </section>
+
+      <section class="movie-lists">
+        <div class="movie-section">
+          <h2>🎬 Not Watched Movies</h2>
+          <div id="not-watched-movies" class="movie-list"></div>
+        </div>
+
+        <div class="movie-section">
+          <h2>✅ Watched Movies</h2>
+          <div id="watched-movies" class="movie-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
