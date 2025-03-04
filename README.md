@@ -1,40 +1,62 @@
 # 🎥 Movie Tracker App
 
 ## Description
-The **Movie Tracker App** is a lightweight web application that allows users to manage their personal movie watchlist. Users can add movies, mark them as watched or not watched, list their favorite scenes, and edit or delete movies. The app features a clean, responsive user interface built using **HTML, CSS, and JavaScript**.
-
-This project also explores **AWS Services** for hosting and scalability.
+The **Movie Tracker App** is a simple and efficient web application that helps users manage their personal movie collection. It allows users to add movies, mark them as watched, list their favorite scenes, and edit or delete existing entries. The app leverages a **serverless backend** deployed on AWS to handle dynamic data storage and retrieval.
 
 ## Features
 - Add movies to **Not Watched** or **Watched** lists.
 - Tag favorite scenes for each movie.
-- Edit movie details and scenes.
-- Delete movies from the list.
+- Edit or delete movies.
+- Dynamic backend for data storage and retrieval.
 - Scene tags with **heart icons** for watched movies.
-- Fully responsive design (mobile-friendly).
+- Responsive UI with modern design.
 
 ## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript (DOM manipulation)
-- **Cloud Hosting:** AWS S3 (Static Website Hosting)
-- **Deployment Automation:** AWS CodePipeline (Optional)
-- **Storage (optional future enhancement):** AWS DynamoDB for movie data persistence
-- **Scalability (optional future enhancement):** AWS CloudFront for CDN distribution
+### Frontend
+- **HTML**, **CSS**, **JavaScript** (DOM manipulation)
 
-## AWS Services Overview
+### Backend (AWS Serverless Stack)
 | Service      | Usage Description                                                                 |
 |--------------|----------------------------------------------------------------------------------|
-| **S3**        | Hosting the static website files (HTML, CSS, JS).                               |
-| **CloudFront**| Optional: Distribute the app globally with low latency.                         |
-| **CodePipeline** | Optional: Automate deployment from GitHub to S3 bucket.                     |
-| **DynamoDB**  | Optional Future Scope: Store movies and scenes data for persistence.            |
+| **AWS Lambda** | Backend functions for handling create, read, update, and delete (CRUD) operations. |
+| **API Gateway** | Exposes HTTP endpoints to connect frontend with backend.                     |
+| **DynamoDB**  | Stores movie data, including title, status, and favorite scenes.                  |
+| **S3**        | Hosts the static frontend files (HTML, CSS, JS).                                 |
+
+---
+
+## AWS Architecture Overview
+1. **Frontend Hosting:** Static files are stored in **AWS S3** for web hosting.
+2. **API Gateway:** Routes HTTP requests from the frontend to the appropriate **Lambda** functions.
+3. **Lambda Functions:** Handle all CRUD operations for movies and scenes.
+4. **DynamoDB:** Stores all movie data, including titles, status (watched/unwatched), and favorite scenes.
 
 
-## How to Deploy on AWS S3
-1. Create an S3 bucket.
-2. Enable **Static Website Hosting** in bucket properties.
-3. Upload `index.html`, `style.css`, and `script.js` to the bucket.
-4. Access your app using the S3 public URL.
+---
 
-## Demo Video
-Watch the demo on YouTube:  
-🔗 [https://youtu.be/buQvIcs_sFw](https://youtu.be/buQvIcs_sFw)
+## How It Works
+1. **User Action:** Add/Edit/Delete movie from the frontend.
+2. **API Request:** Frontend sends requests to **API Gateway**.
+3. **Lambda Execution:** API Gateway triggers Lambda functions.
+4. **Data Storage:** Lambda reads/writes data to **DynamoDB**.
+5. **Update UI:** Frontend fetches and displays updated movie list.
+
+---
+
+## How to Run Locally
+1. Clone the repository.
+2. Open `index.html` directly in your browser.
+3. For full functionality (with AWS backend), configure `script.js` to call your **API Gateway** endpoints.
+
+---
+
+## Deployment Guide (AWS)
+### 1. Frontend (S3 Hosting)
+- Upload `index.html`, `style.css`, and `script.js` to **AWS S3 bucket**.
+- Enable **Static Website Hosting** in bucket properties.
+
+### 2. Backend (Lambda + API Gateway + DynamoDB)
+- Create a **DynamoDB table** (e.g., `Movies`) with attributes:
+    - `MovieID` (Primary Key - String)
+    - `Title` (String)
+    - `Status` (String
